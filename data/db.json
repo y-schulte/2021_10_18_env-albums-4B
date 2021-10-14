@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "username": "test",
+      "password": "test"
+    },
+    {
+      "username": "scoobydoo",
+      "password": "scoobydoo"
+    }
+  ],
+  "albums": [
+    {
+      "band": "The Spice Girls",
+      "title": "Spiceworld",
+      "year": "1997"
+    },
+    {
+      "band": "Radiohead",
+      "title": "Kid A",
+      "year": "1998"
+    },
+    {
+      "band": "The Wurzels",
+      "title": "Best Of The Wurzels",
+      "year": "1978"
+    },
+    {
+      "band": "The Spice Girls",
+      "title": "Spiceworld",
+      "year": "1997"
+    }
+  ]
+}
