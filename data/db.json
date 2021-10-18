@@ -2,33 +2,57 @@
   "users": [
     {
       "username": "test",
-      "password": "test"
+      "password": "test",
+      "albums": [
+        {
+          "id": "0efde05e-ffab-459b-933a-8c107b8e82f9",
+          "band": "The Test Band",
+          "title": "Testing Times",
+          "year": "1999"
+        },
+        {
+          "id": "b2b77709-8a2e-4755-81b4-17a6a1afa102",
+          "band": "The Test Band",
+          "title": "Testing Times",
+          "year": "1999"
+        },
+        {
+          "id": "569bb179-e310-446e-ba44-bc4ac75f0600",
+          "band": "A",
+          "title": "A",
+          "year": "A"
+        },
+        {
+          "id": "0617c75e-e4de-4533-ad40-4652aa91270f",
+          "band": "B",
+          "title": "B",
+          "year": "B"
+        },
+        {
+          "id": "1a899740-75e1-47c8-81fc-01cbf015508f",
+          "band": "C",
+          "title": "C",
+          "year": "C"
+        },
+        {
+          "id": "c7b3b057-8b30-4dd6-bf84-0cf97b9435fc",
+          "band": "D",
+          "title": "D",
+          "year": "D"
+        }
+      ]
     },
     {
       "username": "scoobydoo",
-      "password": "scoobydoo"
-    }
-  ],
-  "albums": [
-    {
-      "band": "The Spice Girls",
-      "title": "Spiceworld",
-      "year": "1997"
-    },
-    {
-      "band": "Radiohead",
-      "title": "Kid A",
-      "year": "1998"
-    },
-    {
-      "band": "The Wurzels",
-      "title": "Best Of The Wurzels",
-      "year": "1978"
-    },
-    {
-      "band": "The Spice Girls",
-      "title": "Spiceworld",
-      "year": "1997"
+      "password": "scoobydoo",
+      "albums": [
+        {
+          "id": "784e5efe-efb8-4b60-a1cd-a0b053bc013e",
+          "band": "The Scooby Doo Band",
+          "title": "Scooby Doo",
+          "year": "1992"
+        }
+      ]
     }
   ]
 }

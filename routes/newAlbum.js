@@ -50,7 +50,7 @@ router.post("/", async (req, res, next) => {
     // const title = req.body.title;
     // const year = req.body.year;
 
-    const {band, title, year} = req.body;
+    const { username, band, title, year } = req.body;
 
     const newAlbum = {
         id: uuid_v4(),
@@ -61,13 +61,49 @@ router.post("/", async (req, res, next) => {
 
     // albums.push(newAlbum);
 
-    db.data.albums.push(req.body);
+    // * 14/10 TASK 1
+    // We want to find the user object in the db which matches the logged in user who sent the new album
+    // 1. Find the user in the db with the same username as whoever added the new album
+    let updatedUser = db.data.users.find(user => {
+        // When we find the correct user object in the db
+        if (user.username === username) {
+
+            // * 14/10 TASK 2
+            // Make sure that only unique (non-duplicate) albums can be added to the user's "albums" array
+
+            // Check if an album with the same details already exists in the user's "albums"...
+            const albumExists = user.albums.find(album => {
+                // If the user already has the same album in their "albums" array...
+                if (album.band.toLowerCase() === band.toLowerCase()
+                    && album.title.toLowerCase() === title.toLowerCase() 
+                    && album.year === year
+                ) {
+                    return album;
+                } 
+            })
+
+            // * Only if the album doesn't already exist should we add it...
+            // "If the albumExists variable is undefined..."
+            // Then it is ok to add the album!
+            if (!albumExists) {
+                // Push the new album into its "albums" array
+                user.albums.push(newAlbum); 
+                console.log(`New album added to the albums array with id ${newAlbum.id}`);
+                // Return the user object you just updated, which becomes the value of "updatedUser"
+                // You can now send the up to date list of the user's albums back to the frontend to be rendered
+                // * But only after the db has written the change you just made, with db.write()!
+                return user;
+            } else {
+                // If the user already has the same album...
+                // Just return the user, don't change it!
+                return user;
+            }
+        }
+    })
 
     await db.write();
 
-    console.log(`New album added to the albums array with id ${newAlbum.id}`);
-
-    res.status(201).json(db.data.albums);
+    res.status(201).json(updatedUser.albums);
 })
 
 // This doesn't exist in our project, but is a good example of using a router, to handle more than one *related* endpoint

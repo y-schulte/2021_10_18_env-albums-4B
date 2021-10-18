@@ -16,22 +16,23 @@ router.post("/", async (req, res, next) => {
     const {username, password} = req.body;
     
     // * 14/10 morning - 1. Question: does the user trying to log in already exist in the database?
-    const currentUser = db.data.users.find(user => user.username === username && user.password === password);
+    let currentUser = db.data.users.find(user => user.username === username && user.password === password);
 
     // If the user is already in the database, go straight on to the response
     if (currentUser) {
         console.log("User found!");
-        res.json( { username: username });
     // Else if the user is not already in the database:
     //  1. Write them to the database (in the "users" array)
     //  2. Wait for the db.json file to be updated by lowdb
     //  3. Then go on to send the response
     } else {
         console.log("New user!");
-        db.data.users.push( { username: username, password: password });
+        currentUser = { username: username, password: password, albums: [] };
+        db.data.users.push(currentUser);
         await db.write();
-        res.status(201).json( { username: username } );
     }
+
+    res.json( { username: username, albums: currentUser.albums } );
 })
 
 // Export the router to be registered in index.js

@@ -1,3 +1,7 @@
+// Import dotenv
+import dotenv from "dotenv";
+dotenv.config();
+
 // const express = require("express");
 import express from "express";
 
@@ -30,7 +34,7 @@ await db.read();
 
 // If there's already some data in db.json, that's cool!
 // If db.json has nothing in it, create starting data ---> { users: [], albums: [] }
-db.data ||= { users: [], albums: [] };
+db.data ||= { users: [] };
 
 // ! Deprecated
 //const bodyParser = require("body-parser");
@@ -68,6 +72,9 @@ app.use("/new-album", newAlbum);
 // Register our new route for the "/login" endpoint.
 app.use("/login", login);
 
-app.listen(3000, () => {
-    console.log("Server has started!");
+console.log("The current db.data object:", db.data)
+
+// printenv | grep PORT -> grep is a feature for searching through large pieces of text.
+app.listen(process.env.PORT || 3000, () => {
+    console.log("Server has started on port", process.env.PORT);
 })
