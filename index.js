@@ -72,6 +72,10 @@ app.use("/new-album", newAlbum);
 // Register our new route for the "/login" endpoint.
 app.use("/login", login);
 
+app.get("/", (req, res) => {
+    res.json("Hello world!");
+});
+
 console.log("The current db.data object:", db.data)
 
 // printenv | grep PORT -> grep is a feature for searching through large pieces of text.
